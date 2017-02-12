@@ -9,12 +9,23 @@ namespace Kontakty
 		public NewPerson()
 		{
 			InitializeComponent();
-
+			dateOfBird.SetValue(DatePicker.MaximumDateProperty, DateTime.Now);
 		}
 
-		public async void ulozit(object sender, EventArgs args)
+		public void ulozit(object sender, EventArgs args)
 		{
-			await this.Navigation.PushAsync(new PeopleList());
+			var dbConnection = App.Database;
+			PersonDatabase userDatabase = App.Database;
+
+			Person item = new Person();
+			item.DateOfBirth = dateOfBird.Date;
+			item.Firstname = jmeno.Text;
+			item.Phone = Convert.ToInt32(phone.Text);
+			item.Lastname = prijmeni.Text;
+
+			App.Database.SaveItemAsync(item);
+
+			Navigation.PushModalAsync(new PeopleList());
 
 		}
 

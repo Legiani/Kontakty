@@ -2,15 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 		x:Class="Kontakty.NewPerson"
 		xmlns:sys="clr-namespace:System;assembly=mscorlib"
+		NavigationPage.HasNavigationBar="true"
 		>
 	<ContentPage.Content>
-		<Grid HeightRequest="140">
+		<Grid>
 				<Grid.ColumnDefinitions >
 					<ColumnDefinition Width="*"/>
-					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="1.3*"/>
 		    	</Grid.ColumnDefinitions>
 					
 		    	<Grid.RowDefinitions>
+					<RowDefinition Height="*"/>
 					<RowDefinition Height="*"/>
 					<RowDefinition Height="*"/>
 					<RowDefinition Height="*"/>
@@ -20,14 +22,28 @@
 				<Label Text="Noví kontakt" Grid.Row="0" Grid.Column="0" FontSize="39" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" />
 				<Button Clicked="ulozit" Text="Uložit" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
 
-				<Label Text="Jméno:" Grid.Row="1" Grid.Column="0" Margin="10" />
-				<Entry Placeholder="Santa" Grid.Row="1" Grid.Column="1" x:Name="jmeno" />
+				<Label Text="Jméno:" Grid.Row="1" Grid.Column="0" Margin="10" VerticalTextAlignment="Center" />
+				<Entry Placeholder="Santa" Grid.Row="1" Grid.Column="1" x:Name="jmeno" Margin="0, 10, 0, 10" />
 
-				<Label Text="Přijmení:" Grid.Row="2" Grid.Column="0" Margin="10" />
-				<Entry Placeholder="Kraus" Grid.Row="2" Grid.Column="1" x:Name="prijmeni"/>
+				<Label Text="Přijmení:" Grid.Row="2" Grid.Column="0" Margin="10" VerticalTextAlignment="Center" />
+				<Entry Placeholder="Kraus" Grid.Row="2" Grid.Column="1" x:Name="prijmeni" Margin="0, 10, 0, 10" />
 
-				<Label Text="Věk:" Grid.Row="3" Grid.Column="0" Margin="10"/>
-				<Entry Keyboard="Numeric" Placeholder="7" Grid.Row="3" Grid.Column="1" x:Name="vek"/>
+				<Label Text="Datum narození:" Grid.Row="3" Grid.Column="0" Margin="10" VerticalTextAlignment="Center" />
+<!--				<Entry Keyboard="Numeric" Placeholder="3.20.1997" Grid.Row="3" Grid.Column="1" x:Name="vek" Margin="0, 10, 0, 10" />-->
+
+				<DatePicker Grid.Row="3" Grid.Column="1" x:Name="dateOfBird" Margin="0, 10, 0, 10">
+		         	<DatePicker.Format>dd-MM-yyyy</DatePicker.Format>
+		         	<DatePicker.MinimumDate>
+		            	<sys:DateTime x:FactoryMethod="Parse">
+		               		<x:Arguments>
+		                  		<x:String>1 Jan 1920</x:String>
+		               		</x:Arguments>
+		            	</sys:DateTime>
+		         	</DatePicker.MinimumDate>
+		      	</DatePicker>
+
+				<Label Text="Telefon:" Grid.Row="4" Grid.Column="0" Margin="10, 10, 10, 20" VerticalTextAlignment="Center" />
+				<Entry Keyboard="Numeric" Placeholder="420 069 007" Grid.Row="4" Grid.Column="1" x:Name="phone" Margin="0, 10, 0, 20" />
 
 		</Grid>
 

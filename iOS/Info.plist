@@ -7,7 +7,7 @@
 	<key>CFBundleName</key>
 	<string>Kontakty</string>
 	<key>CFBundleIdentifier</key>
-	<string>nontrema.kontakty</string>
+	<string>com.nontrema.kontakty</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
@@ -41,5 +41,9 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>UIStatusBarHidden</key>
+	<true/>
+	<key>UIRequiresFullScreen</key>
+	<true/>
 </dict>
 </plist>

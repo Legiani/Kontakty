@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using SQLite;
 
 namespace Kontakty
 {
 	public class Person
 	{
+		[PrimaryKey, AutoIncrement]
 		public int ID { get; set; }
 		public int Phone { get; set; }
 		public string Lastname { get; set; }
@@ -20,13 +22,7 @@ namespace Kontakty
 
 		public override string ToString()
 		{
-			return Firstname + " " + Lastname + " " + Age;
+			return Firstname + " " + Lastname + " " + Age + " " + Phone;
 		}
-	}
-
-	public class Groop : ObservableCollection<Person>
-	{
-		public string LongName { get; set; }
-		public string ShortName { get; set; }
 	}
 }

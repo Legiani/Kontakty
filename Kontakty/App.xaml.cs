@@ -9,8 +9,8 @@ namespace Kontakty
 		{
 			InitializeComponent();
 
-
 			MainPage = new NavigationPage(new PeopleList());
+
 		}
 
 		protected override void OnStart()
@@ -26,6 +26,20 @@ namespace Kontakty
 		protected override void OnResume()
 		{
 			// Handle when your app resumes
+		}
+
+		private static PersonDatabase _database;
+
+		public static PersonDatabase Database
+		{
+			get
+			{
+				if (_database == null)
+				{
+					_database = new PersonDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("Kontakty.db3"));
+				}
+				return _database;
+			}
 		}
 	}
 }
