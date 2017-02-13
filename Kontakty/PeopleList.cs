@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Kontakty
@@ -10,18 +11,7 @@ namespace Kontakty
 		public PeopleList()
 		{
 			InitializeComponent();
-
-		
-
-			var dbConnection = App.Database;
-			PersonDatabase personDatabase = App.Database;
-
-			PeopleListViewFormatted.ItemsSource = App.Database.GetItemsAsync().Result;
-
-			//vypis skupin a kontaktu do Listviev
-			//PeopleListViewFormatted.ItemsSource = grouped;
-		
-
+			fill();
 		}
 
 		/// <summary>
@@ -32,6 +22,7 @@ namespace Kontakty
 		/// <param name="args">Arguments.</param>
 		public void pridat(object sender, EventArgs args)
 		{
+			fill();
 			Navigation.PushModalAsync(new NewPerson());
 		}
 
@@ -42,10 +33,23 @@ namespace Kontakty
 		/// <param name="e">E.</param>
 		public async void SelectedItemMethod(object sender, ItemTappedEventArgs e)
 		{
+			fill();
 			//vytvoření var s info o uživately
 			var user = e.Item as Person;
 			//otevře novou stranku
+			await Task.Delay(3);
 			await Navigation.PushAsync(new Detail(user));
+		}
+
+		/// <summary>
+		/// Napln ListView kontakty
+		/// </summary>
+		public void fill() { 
+			var dbConnection = App.Database;
+			PersonDatabase personDatabase = App.Database;
+
+			PeopleListViewFormatted.ItemsSource = App.Database.GetItemsAsync().Result;
+
 		}
 
 

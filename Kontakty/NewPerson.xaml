@@ -5,7 +5,7 @@
 		NavigationPage.HasNavigationBar="true"
 		>
 	<ContentPage.Content>
-		<Grid>
+		<Grid Margin="0, 15, 0, 0">
 				<Grid.ColumnDefinitions >
 					<ColumnDefinition Width="*"/>
 					<ColumnDefinition Width="1.3*"/>

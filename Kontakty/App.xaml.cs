@@ -8,10 +8,10 @@ namespace Kontakty
 		public App()
 		{
 			InitializeComponent();
-
 			MainPage = new NavigationPage(new PeopleList());
 
 		}
+
 
 		protected override void OnStart()
 		{

@@ -25,7 +25,7 @@
 					<RowDefinition Height="*"/>
 		    	</Grid.RowDefinitions>
 
-				<Label Text="Kontaky" Grid.Row="0" Grid.Column="0" FontSize="39" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" x:Name="text"/>
+				<Label Text="Kontaky" Grid.Row="0" Grid.Column="0" FontSize="39" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" x:Name="text" Margin="10"/>
 				<Button Clicked="pridat" Text="Přidat +" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
 			</Grid>
 
@@ -46,7 +46,7 @@
 									<Label Text="{Binding GetName}" FontAttributes="Bold" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="End" />
 									<Label Text="{Binding Age}" Grid.Row="1"  Grid.Column="1" FontSize="11" VerticalTextAlignment="Start"  />
 	<!--							<abstractions:CircleImage  Source="{Binding ProfilePhoto}" WidthRequest="95" HeightRequest="95" HorizontalOptions="Center" Aspect="AspectFill" Grid.Column="0" Grid.RowSpan="2"/>-->
-									<Image Source="images.jpeg" Grid.Row="0"  />		
+									<Image Source="images.png" Grid.Row="0"  Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center" HorizontalOptions="Center" Margin="10"/>		
 							</Grid>					 
 					    </ViewCell>
 					</DataTemplate>
