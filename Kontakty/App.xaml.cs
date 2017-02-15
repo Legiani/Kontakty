@@ -4,10 +4,12 @@ namespace Kontakty
 {
 	public partial class App : Application
 	{
-		
+		public static Person person;
+
 		public App()
 		{
 			InitializeComponent();
+
 			MainPage = new NavigationPage(new PeopleList());
 
 		}

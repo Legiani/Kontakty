@@ -13,6 +13,13 @@ namespace Kontakty
 			InitializeComponent();
 			fill();
 		}
+		protected override void OnAppearing()
+		{
+			base.OnAppearing();
+
+			fill();
+
+		}
 
 		/// <summary>
 		/// Odkaz na stránku přidání nového uživatele
@@ -35,10 +42,10 @@ namespace Kontakty
 		{
 			fill();
 			//vytvoření var s info o uživately
-			var user = e.Item as Person;
+			App.person = e.Item as Person;
 			//otevře novou stranku
 			await Task.Delay(3);
-			await Navigation.PushAsync(new Detail(user));
+			await Navigation.PushAsync(new Detail());
 		}
 
 		/// <summary>
