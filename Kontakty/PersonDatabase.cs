@@ -15,6 +15,8 @@ namespace Kontakty
 		{
 			database = new SQLiteAsyncConnection(dbPath);
 			database.CreateTableAsync<Person>().Wait();
+            database.CreateTableAsync<Kategorie>().Wait();
+            database.CreateTableAsync<Vazebni>().Wait();
 		}
 
 
@@ -23,10 +25,22 @@ namespace Kontakty
 			return database.Table<Person>().ToListAsync();
 		}
 
-		public Task<List<Person>> GetItemsNotDoneAsync()
+		public Task<List<Vazebni>> GetVazebniAsync()
 		{
-			return database.QueryAsync<Person>("SELECT * FROM [TodoItem] WHERE [Done] = 0");
+            return database.Table<Vazebni>().ToListAsync();
 		}
+
+        public Task<Kategorie> GetKategorie(int id)
+		{
+            return database.Table<Kategorie>().Where(i => i.ID == id).FirstOrDefaultAsync();
+		}
+
+        public Task<List<Kategorie>> GetKategorieAsync()
+		{
+            return database.Table<Kategorie>().ToListAsync();
+		}
+
+
 
 		public Task<Person> GetItemAsync(int id)
 		{
@@ -34,6 +48,30 @@ namespace Kontakty
 		}
 
 		public Task<int> SaveItemAsync(Person item)
+		{
+			if (item.ID != 0)
+			{
+				return database.UpdateAsync(item);
+			}
+			else
+			{
+				return database.InsertAsync(item);
+			}
+		}
+
+        public Task<int> SaveVazebniAsync(Vazebni item)
+		{
+			if (item.ID != 0)
+			{
+                return database.UpdateAsync(item);
+			}
+			else
+			{
+				return database.InsertAsync(item);
+			}
+		}
+
+        public Task<int> SaveKategorieAsync(Kategorie item)
 		{
 			if (item.ID != 0)
 			{

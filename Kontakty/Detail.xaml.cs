@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Plugin.Messaging;
 using Xamarin.Forms;
@@ -10,7 +11,7 @@ namespace Kontakty
 	/// </summary>
 	public partial class Detail : ContentPage
 	{
-
+        string s;
 		//constructor pro přijem infa o kontaktu
 		public Detail()
 		{
@@ -33,7 +34,25 @@ namespace Kontakty
 			prijmeni.Text = App.person.Lastname;
 			narozen.Text = App.person.DateOfBirth.ToString("dd MMMMM yyyy");
 			vek.Text = App.person.Age.ToString();
-			phone.Text = App.person.Phone.ToString();
+
+			//vytvoření spojení s db
+			var dbConnection = App.Database;
+			//db uživatelu
+			PersonDatabase userDatabase = App.Database;
+            //přikaz smaž
+            App.Database.GetVazebniAsync();
+
+            List<Vazebni> derp = App.Database.GetVazebniAsync().Result;
+
+
+            foreach (Vazebni x in derp)
+			{
+                Kategorie xyz =  App.Database.GetKategorie(x.ID_kategorie).Result;
+                s += xyz.Nazev;
+                s += " ";
+			}
+			//phone.Text = App.person.Phone.ToString();
+            jmeno.Text = s;
 
 		}
 
@@ -63,6 +82,19 @@ namespace Kontakty
 		void edit(object sender, EventArgs args)
 		{
 			Navigation.PushModalAsync(new Edit());
+		}
+
+		void cat(object sender, EventArgs args)
+		{
+			Kategorie kategorie = new Kategorie();
+			kategorie.Nazev = "Velký";
+			App.Database.SaveKategorieAsync(kategorie);
+			kategorie.Nazev = "Pleb";
+			App.Database.SaveKategorieAsync(kategorie);
+			kategorie.Nazev = "Derp";
+			App.Database.SaveKategorieAsync(kategorie);
+
+			Navigation.PushModalAsync(new Cat());
 		}
 
 

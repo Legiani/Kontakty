@@ -38,7 +38,7 @@ namespace Kontakty
 			{
 				if (_database == null)
 				{
-					_database = new PersonDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("Kontakty.db3"));
+					_database = new PersonDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("Konty.db3"));
 				}
 				return _database;
 			}

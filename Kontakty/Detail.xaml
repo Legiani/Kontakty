@@ -1,43 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-		x:Class="Kontakty.Detail"
-		NavigationPage.HasNavigationBar="true"
-		>
-	<ContentPage.Content>
-		<StackLayout Spacing="10" x:Name="layout">
-			<Image Source="images.png"  VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="100" HeightRequest="130" Margin="10"/>
-	     	<Grid VerticalOptions="Start" HorizontalOptions="FillAndExpand" Margin="15">
-			  	<Grid.RowDefinitions>
-			    	<RowDefinition Height="*" />
-			    	<RowDefinition Height="*" />
-					<RowDefinition Height="*" />
-					<RowDefinition Height="*" />
-					<RowDefinition Height="*" />
-					<RowDefinition Height="*" />
-					<RowDefinition Height="*" />
-			  	</Grid.RowDefinitions>
-			  	<Grid.ColumnDefinitions>
-			    	<ColumnDefinition Width="*" />
-			    	<ColumnDefinition Width="*" />
-			  	</Grid.ColumnDefinitions>
-				
-			  	<Label Text="Jméno:" Grid.Row="0" Grid.Column="0" />
-			  	<Label Text="Prijmení" Grid.Row="1" Grid.Column="0" />
-			  	<Label Text="Datum narození" Grid.Row="2" Grid.Column="0" />
-			  	<Label Text="Věk" Grid.Row="3" Grid.Column="0" />
-				<Label Text="Telefon" Grid.Row="4" Grid.Column="0" />
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+        x:Class="Kontakty.Detail"
+        NavigationPage.HasNavigationBar="true"
+        >
+    <ContentPage.Content>
+        <StackLayout Spacing="10" x:Name="layout">
+            <Image Source="images.png"  VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="100" HeightRequest="130" Margin="10"/>
+            <Grid VerticalOptions="Start" HorizontalOptions="FillAndExpand" Margin="15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+                <Label Text="Jméno:" Grid.Row="0" Grid.Column="0" />
+                <Label Text="Prijmení" Grid.Row="1" Grid.Column="0" />
+                <Label Text="Datum narození" Grid.Row="2" Grid.Column="0" />
+                <Label Text="Věk" Grid.Row="3" Grid.Column="0" />
+                <Label Text="Telefon" Grid.Row="4" Grid.Column="0" />
 
-			  	<Label x:Name="jmeno" Grid.Row="0" Grid.Column="1" />
-			  	<Label x:Name="prijmeni" Grid.Row="1" Grid.Column="1" />
-			  	<Label x:Name="narozen" Grid.Row="2" Grid.Column="1" />
-			  	<Label x:Name="vek" Grid.Row="3" Grid.Column="1" />
-				<Button x:Name="phone" Grid.Row="4" Grid.Column="1" Clicked="Call" />
+                <Label x:Name="jmeno" Grid.Row="0" Grid.Column="1" />
+                <Label x:Name="prijmeni" Grid.Row="1" Grid.Column="1" />
+                <Label x:Name="narozen" Grid.Row="2" Grid.Column="1" />
+                <Label x:Name="vek" Grid.Row="3" Grid.Column="1" />
+                <Button x:Name="phone" Grid.Row="4" Grid.Column="1" Clicked="Call" />
 
-				<Button Grid.ColumnSpan="2" Text="Upravit" Clicked="edit" Grid.Row="5" />
-				<Button Grid.ColumnSpan="2" Text="Smazat" Clicked="delete" Grid.Row="6" />
-			</Grid>
-	    </StackLayout>
-		
-	</ContentPage.Content>
+                
+                <Button Grid.ColumnSpan="2" Text="Upravit" Clicked="edit" Grid.Row="5" />
+                <Button Grid.ColumnSpan="2" Text="Smazat" Clicked="delete" Grid.Row="6" />
+                <Button Grid.ColumnSpan="2" Text="Kategorie" Clicked="cat" Grid.Row="7" />
+            </Grid>
+        </StackLayout>
+        
+    </ContentPage.Content>
 </ContentPage>
