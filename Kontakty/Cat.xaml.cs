@@ -11,8 +11,6 @@ namespace Kontakty
         {
             InitializeComponent();
 
-			var dbConnection = App.Database;
-			PersonDatabase personDatabase = App.Database;
 
 
 
@@ -27,17 +25,7 @@ namespace Kontakty
 		public void SelectedItemMethod(object sender, ItemTappedEventArgs e)
 		{
 			//vytvoření var s info o uživately
-            Kategorie kate = e.Item as Kategorie;
 
-            Vazebni vazebni = new Vazebni();
-            vazebni.ID_kategorie = kate.ID;
-            vazebni.ID_kontaktu = App.person.ID;
-			//vytvoření spojení s db
-			var dbConnection = App.Database;
-			//db uživatelu
-			PersonDatabase userDatabase = App.Database;
-			//přikaz smaž
-            App.Database.SaveVazebniAsync(vazebni);
             Navigation.PopModalAsync();
 
 		}

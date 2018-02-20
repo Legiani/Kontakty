@@ -44,12 +44,12 @@ namespace Kontakty
 
 		public Task<Person> GetItemAsync(int id)
 		{
-			return database.Table<Person>().Where(i => i.ID == id).FirstOrDefaultAsync();
+			return database.Table<Person>().Where(i => i.id == id).FirstOrDefaultAsync();
 		}
 
 		public Task<int> SaveItemAsync(Person item)
 		{
-			if (item.ID != 0)
+			if (item.id != 0)
 			{
 				return database.UpdateAsync(item);
 			}

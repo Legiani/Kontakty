@@ -15,7 +15,7 @@
 				<RowDefinition Height="*"/>
 	    	</Grid.RowDefinitions>
 
-			<Grid HeightRequest="140">
+			<Grid>
 				<Grid.ColumnDefinitions >
 					<ColumnDefinition Width="*"/>
 					<ColumnDefinition Width="*"/>
@@ -25,8 +25,8 @@
 					<RowDefinition Height="*"/>
 		    	</Grid.RowDefinitions>
 
-				<Label Text="Kontaky" Grid.Row="0" Grid.Column="0" FontSize="39" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" x:Name="text" Margin="10"/>
-				<Button Clicked="pridat" Text="Přidat +" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+				<Entry Placeholder="Zadaej ID" Grid.Row="0" Grid.Column="0" x:Name="id"  HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
+				<Button Clicked="pridat" Text="Vypiš" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
 			</Grid>
 
 			
@@ -34,20 +34,20 @@
 			    <ListView.ItemTemplate>
 					<DataTemplate>
 					    <ViewCell>
-						    <Grid HeightRequest="100">
+						    <Grid Padding="10">
 							    <Grid.RowDefinitions>
-									<RowDefinition Height="*" />
+									<RowDefinition Height="*"/>
 									<RowDefinition Height="*"/>
 							    </Grid.RowDefinitions>
 							    <Grid.ColumnDefinitions>
 									<ColumnDefinition Width="*"/>
 									<ColumnDefinition Width="5*"/>
 							    </Grid.ColumnDefinitions>
-									<Label Text="{Binding GetName}" FontAttributes="Bold" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="End" />
-									<Label Text="{Binding Age}" Grid.Row="1"  Grid.Column="1" FontSize="11" VerticalTextAlignment="Start"  />
-	<!--							<abstractions:CircleImage  Source="{Binding ProfilePhoto}" WidthRequest="95" HeightRequest="95" HorizontalOptions="Center" Aspect="AspectFill" Grid.Column="0" Grid.RowSpan="2"/>-->
-									<Image Source="images.png" Grid.Row="0"  Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center" HorizontalOptions="Center" Margin="10"/>		
-							</Grid>					 
+									<Label Text="{Binding name}" FontAttributes="Bold" Grid.Row="0" FontSize="11" Grid.Column="0" />
+									<Label Text="{Binding email}" Grid.Row="0"  Grid.Column="1" FontSize="11" />
+                                    <Label Text="{Binding body}"  Grid.Row="1" Grid.Column="0" FontSize="11" Grid.ColumnSpan="2" />
+
+                            </Grid>					 
 					    </ViewCell>
 					</DataTemplate>
 			    </ListView.ItemTemplate>

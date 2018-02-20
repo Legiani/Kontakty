@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Kontakty
 {
@@ -30,7 +33,7 @@ namespace Kontakty
 		public void pridat(object sender, EventArgs args)
 		{
 			fill();
-			Navigation.PushModalAsync(new NewPerson());
+			
 		}
 
 		/// <summary>
@@ -52,12 +55,49 @@ namespace Kontakty
 		/// Napln ListView kontakty
 		/// </summary>
 		public void fill() { 
-			var dbConnection = App.Database;
-			PersonDatabase personDatabase = App.Database;
+          
 
-			PeopleListViewFormatted.ItemsSource = App.Database.GetItemsAsync().Result;
+            Task<HttpResponseMessage> secndJson = GetTheGoodStuff(id.Text);
+            var code = secndJson.Result.EnsureSuccessStatusCode().StatusCode;
+            //System.Diagnostics.Debug.WriteLine(code);
+            if (code.ToString() != "OK"){
+                DisplayAlert("Alert", "Error code: "+code, "OK");
+            }
+                
+            using (HttpContent content = secndJson.Result.Content)
+            {
+                var json = content.ReadAsStringAsync().Result;
+                
+                System.Diagnostics.Debug.WriteLine(json);
+                if (  json == "[]"  )            {
+                    DisplayAlert("Alert", "Nikdo tam nebidlí :-) " + code, "OK");
+                }
+                else
+                {
+                    PeopleListViewFormatted.ItemsSource = JsonConvert.DeserializeObject<List<Person>>(json);
+                }
+
+
+                //var dbConnection = App.Database;
+                //PersonDatabase personDatabase = App.Database;
+
+                //foreach (var item in JsonConvert.DeserializeObject<List<Person>>(json))
+                //{
+                //    App.Database.SaveItemAsync(item);
+                //}
+            }
 
 		}
+
+
+
+        public Task<HttpResponseMessage> GetTheGoodStuff(string data = "1")
+        {
+            var httpClient = new HttpClient();
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, "https://jsonplaceholder.typicode.com/comments?postId=" + data);
+            var response = httpClient.SendAsync(request);
+            return response;
+        }
 
 
 

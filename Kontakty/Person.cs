@@ -1,29 +1,28 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using Newtonsoft.Json;
 using SQLite;
 
 namespace Kontakty
 {
 	public class Person
 	{
-		[PrimaryKey, AutoIncrement]
-		public int ID { get; set; }
-		public int Phone { get; set; }
-		public string Lastname { get; set; }
-		public string Firstname { get; set; }
-        public int Cedulka { get; set; }
+        [JsonProperty("postId")]
+		public int postId { get; set; }
+        [JsonProperty("id")]
+        public int id { get; set; }
+        [JsonProperty("name")]
+		public string name { get; set; }
+        [JsonProperty("email")]
+        public string email { get; set; }
+        [JsonProperty("body")]
+        public string body { get; set; }
 
-		public int Age
-		{
-			get { return DateTime.Now.Year - DateOfBirth.Year; }
-		}
-		public DateTime DateOfBirth { get; set; }
 
-		public string GetName => Lastname + " " + Firstname;
 
 		public override string ToString()
 		{
-			return Firstname + " " + Lastname + " " + Age + " " + Phone;
+            return name + " " + email + " " + body;
 		}
 	}
 }

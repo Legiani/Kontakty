@@ -28,31 +28,7 @@ namespace Kontakty
 
 		protected override void OnAppearing()
 		{
-			//base.OnAppearing();
 
-			jmeno.Text = App.person.Firstname;
-			prijmeni.Text = App.person.Lastname;
-			narozen.Text = App.person.DateOfBirth.ToString("dd MMMMM yyyy");
-			vek.Text = App.person.Age.ToString();
-
-			//vytvoření spojení s db
-			var dbConnection = App.Database;
-			//db uživatelu
-			PersonDatabase userDatabase = App.Database;
-            //přikaz smaž
-            App.Database.GetVazebniAsync();
-
-            List<Vazebni> derp = App.Database.GetVazebniAsync().Result;
-
-
-            foreach (Vazebni x in derp)
-			{
-                Kategorie xyz =  App.Database.GetKategorie(x.ID_kategorie).Result;
-                s += xyz.Nazev;
-                s += " ";
-			}
-			//phone.Text = App.person.Phone.ToString();
-            jmeno.Text = s;
 
 		}
 
@@ -61,20 +37,13 @@ namespace Kontakty
 		{
 			//Device.OpenUri(new Uri("tel://"+this.user.Phone));
 			var phoneDialer = CrossMessaging.Current.PhoneDialer;
-			if (phoneDialer.CanMakePhoneCall)
-				phoneDialer.MakePhoneCall(string.Format("+420{0}", App.person.Phone));
+			//if (phoneDialer.CanMakePhoneCall)
+				//phoneDialer.MakePhoneCall(string.Format("+420{0}", App.person.Phone));
 		}
 
 		void delete(object sender, EventArgs args)
 		{
-			//vytvoření spojení s db
-			var dbConnection = App.Database;
-			//db uživatelu
-			PersonDatabase userDatabase = App.Database;
-			//přikaz smaž
-			App.Database.DeleteItemAsync(App.person);
-			//čekej pro stabilitu
-			Task.Delay(1);
+			
 			//vrat se na domovskou obrazovku
 			Navigation.PopToRootAsync();
 		}
@@ -84,18 +53,7 @@ namespace Kontakty
 			Navigation.PushModalAsync(new Edit());
 		}
 
-		void cat(object sender, EventArgs args)
-		{
-			Kategorie kategorie = new Kategorie();
-			kategorie.Nazev = "Velký";
-			App.Database.SaveKategorieAsync(kategorie);
-			kategorie.Nazev = "Pleb";
-			App.Database.SaveKategorieAsync(kategorie);
-			kategorie.Nazev = "Derp";
-			App.Database.SaveKategorieAsync(kategorie);
 
-			Navigation.PushModalAsync(new Cat());
-		}
 
 
 

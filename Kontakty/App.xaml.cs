@@ -30,18 +30,5 @@ namespace Kontakty
 			// Handle when your app resumes
 		}
 
-		private static PersonDatabase _database;
-
-		public static PersonDatabase Database
-		{
-			get
-			{
-				if (_database == null)
-				{
-					_database = new PersonDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("Konty.db3"));
-				}
-				return _database;
-			}
-		}
 	}
 }
